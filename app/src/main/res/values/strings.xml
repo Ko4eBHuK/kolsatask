@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Kolsa Task</string>
+
+    <!-- common ui -->
+    <string name="error_title">Ошибка</string>
+
+    <!-- workouts screen strings -->
+    <string name="workouts_screen_title">Список тренировок</string>
 </resources>

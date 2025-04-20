@@ -1,5 +1,6 @@
 package com.okladnikov.kolsatask.navigation
 
+import androidx.activity.viewModels
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
@@ -7,7 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
 import com.okladnikov.kolsatask.MainActivity
+import com.okladnikov.kolsatask.domain.Workout
+import com.okladnikov.kolsatask.section.workouts.WorkoutsScreen
+import com.okladnikov.kolsatask.section.workouts.viewmodel.WorkoutsViewModel
 
 @Composable
 fun SetupNavGraph(
@@ -16,16 +21,21 @@ fun SetupNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = TrainingsScreen.route,
+        startDestination = WorkoutsScreen.route,
         enterTransition = { slideInHorizontally(animationSpec = tween(500)) },
         exitTransition = { slideOutHorizontally(animationSpec = tween(500)) }
     ) {
-        composable(route = TrainingsScreen.route) {
-            TODO("not implemented")
+        composable(route = WorkoutsScreen.route) {
+            val loginViewModel: WorkoutsViewModel by activity.viewModels()
+            WorkoutsScreen(
+                navController = navController,
+                viewModel = loginViewModel
+            )
         }
 
-        composable(route = TrainingScreen.route) {
-            TODO("not implemented")
+        composable<Workout> { backStackEntry ->
+            val workout: Workout = backStackEntry.toRoute()
+
         }
     }
 }
