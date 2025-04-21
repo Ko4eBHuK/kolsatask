@@ -49,6 +49,8 @@ fun WorkoutsScreen(
     navController: NavController,
     viewModel: WorkoutsViewModel
 ) {
+    // TODO - search and filter
+
     val screenState by viewModel.screenState.collectAsState()
 
     if (screenState.isError) {
@@ -167,9 +169,11 @@ private fun WorkoutItem(
                 FlowRow(
                     modifier = Modifier.fillMaxWidth()
                         .padding(top = 10.dp),
-                    horizontalArrangement = Arrangement.SpaceEvenly
+                    horizontalArrangement = Arrangement.Start
                 ) {
-                    Row {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(.4f),
+                    ) {
                         val workoutType = WorkoutType from workout.type
                         Icon(
                             painter = painterResource(id = R.drawable.ic_workout_type),
@@ -182,10 +186,12 @@ private fun WorkoutItem(
                         )
                         Text(workoutType.title)
                     }
-                    Row {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(.4f),
+                    ) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_workout_time),
-                            contentDescription = "type",
+                            contentDescription = "duration",
                             tint = PurpleGrey40
                         )
                         Text(workout.duration)

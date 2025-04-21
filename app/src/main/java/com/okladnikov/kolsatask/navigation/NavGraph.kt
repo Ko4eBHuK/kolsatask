@@ -11,6 +11,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.okladnikov.kolsatask.MainActivity
 import com.okladnikov.kolsatask.domain.Workout
+import com.okladnikov.kolsatask.section.workout.WorkoutScreen
+import com.okladnikov.kolsatask.section.workout.viewmodel.WorkoutScreenIntent
+import com.okladnikov.kolsatask.section.workout.viewmodel.WorkoutViewModel
 import com.okladnikov.kolsatask.section.workouts.WorkoutsScreen
 import com.okladnikov.kolsatask.section.workouts.viewmodel.WorkoutsViewModel
 
@@ -26,16 +29,21 @@ fun SetupNavGraph(
         exitTransition = { slideOutHorizontally(animationSpec = tween(500)) }
     ) {
         composable(route = WorkoutsScreen.route) {
-            val loginViewModel: WorkoutsViewModel by activity.viewModels()
+            val workoutsViewModel: WorkoutsViewModel by activity.viewModels()
             WorkoutsScreen(
                 navController = navController,
-                viewModel = loginViewModel
+                viewModel = workoutsViewModel
             )
         }
 
         composable<Workout> { backStackEntry ->
             val workout: Workout = backStackEntry.toRoute()
-
+            val workoutViewModel: WorkoutViewModel by activity.viewModels()
+            workoutViewModel.processIntent(WorkoutScreenIntent.SetWorkout(workout))
+            WorkoutScreen(
+                navController = navController,
+                viewModel = workoutViewModel
+            )
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.okladnikov.kolsatask.di
 
+import com.okladnikov.kolsatask.BuildConfig
 import com.okladnikov.kolsatask.section.workout.data.WorkoutApi
 import com.okladnikov.kolsatask.section.workouts.data.WorkoutsApi
 import dagger.Module
@@ -15,7 +16,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    private const val BASE_URL = "http://ref.test.kolsa.ru"
+    private const val BASE_URL = BuildConfig.BASE_URL
 
     private val json = Json {
         ignoreUnknownKeys = true

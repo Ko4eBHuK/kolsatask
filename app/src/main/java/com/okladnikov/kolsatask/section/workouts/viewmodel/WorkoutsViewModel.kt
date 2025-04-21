@@ -29,7 +29,6 @@ class WorkoutsViewModel @Inject constructor(
             WorkoutsScreenIntent.CloseError -> {
                 _screenState.value = _screenState.value.copy(isError = false)
             }
-            is WorkoutsScreenIntent.OpenWorkout -> { /*currently nothing*/ }
         }
     }
 
