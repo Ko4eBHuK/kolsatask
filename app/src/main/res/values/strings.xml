@@ -6,4 +6,7 @@
 
     <!-- workouts screen strings -->
     <string name="workouts_screen_title">Список тренировок</string>
+
+    <!-- workouts screen strings -->
+    <string name="workout_screen_title">Тренировка</string>
 </resources>
